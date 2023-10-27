@@ -1,8 +1,13 @@
 package com.example.xm_assignement.di
 
 import com.example.xm_assignement.data.XMSurveyApi
-import com.example.xm_assignement.survey.repository.SurveyRepository
-import com.example.xm_assignement.survey.repository.SurveyRepositoryImpl
+import com.example.xm_assignement.data.repository.SurveyRepository
+import com.example.xm_assignement.data.repository.SurveyRepositoryImpl
+import com.example.xm_assignement.feature.survey.usecase.GetSurveyQuestionsUseCase
+import com.example.xm_assignement.feature.survey.usecase.SubmitAnswerUseCase
+import com.example.xm_assignement.feature.survey.usecase.convertor.QuestionConvertor
+import com.example.xm_assignement.feature.survey.usecase.impl.GetSurveyQuestionsUseCaseImpl
+import com.example.xm_assignement.feature.survey.usecase.impl.SubmitAnswerUseCaseImpl
 import com.example.xm_assignement.util.DispatcherProvider
 import dagger.Module
 import dagger.Provides
@@ -12,7 +17,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -31,6 +35,23 @@ object AppModule {
     @Singleton
     @Provides
     fun provideSurveyRepository(api: XMSurveyApi): SurveyRepository = SurveyRepositoryImpl(api)
+
+    @Singleton
+    @Provides
+    fun provideQuestionConvertor(): QuestionConvertor = QuestionConvertor
+
+    @Singleton
+    @Provides
+    fun provideGetQuestionsUseCase(
+        repository: SurveyRepository,
+        convertor: QuestionConvertor
+    ): GetSurveyQuestionsUseCase =
+        GetSurveyQuestionsUseCaseImpl(repository, convertor)
+
+    @Singleton
+    @Provides
+    fun provideSubmitAnswerUseCase(repository: SurveyRepository): SubmitAnswerUseCase =
+        SubmitAnswerUseCaseImpl(repository)
 
     @Singleton
     @Provides

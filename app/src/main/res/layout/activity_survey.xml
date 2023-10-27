@@ -6,7 +6,7 @@
     android:layout_margin="12dp"
     android:background="@color/grey"
     android:orientation="vertical"
-    tools:context=".survey.SurveyActivity">
+    tools:context=".feature.survey.ui.SurveyActivity">
 
     <ProgressBar
         android:id="@+id/survey_progress"

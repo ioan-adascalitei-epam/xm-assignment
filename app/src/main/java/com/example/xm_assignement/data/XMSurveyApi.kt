@@ -13,5 +13,5 @@ interface XMSurveyApi {
     suspend fun getQuestions(): Response<List<QuestionDto>>
 
     @POST("/question/submit")
-    suspend fun submitResponse(@Body answerDto: AnswerDto): Response<Any>
+    suspend fun submitResponse(@Body answerDto: AnswerDto): Response<Unit>
 }

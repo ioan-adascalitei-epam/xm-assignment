@@ -1,10 +1,10 @@
-package com.example.xm_assignement
+package com.example.xm_assignement.feature.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.xm_assignement.databinding.ActivityMainBinding
-import com.example.xm_assignement.survey.SurveyActivity
+import com.example.xm_assignement.feature.survey.ui.SurveyActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
